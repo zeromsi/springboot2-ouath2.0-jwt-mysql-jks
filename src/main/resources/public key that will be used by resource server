@@ -1,0 +1,17 @@
+generate jks file
+
+1. sudo keytool -genkeypair -alias jwt -keyalg RSA -keypass password -keystore jwt.jks -storepass password
+2. sudo keytool -importkeystore -srckeystore jwt.jks -destkeystore jwt.jks -deststoretype pkcs12
+
+generate public key using jks
+sudo keytool -list -rfc --keystore jwt.jks | openssl x509 -inform pem -pubkey
+
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjV7EwLV63bpm+lbzTOV+
+8hFwoCQ5GnC7nSsEzJTZYOyyPhsTHuM9c2QQzZJuBgDa9fp8VlOgdTYCTcr4j5HK
+FPeKLTDKDWPoiGWAnkPeRWqvJfDe3lpdPUoZgNDHE95xCwv9YusX5PwKUTj1488U
+lwnLf+/cdK7ZWIG7q9vGyXvj18pcYJhrEEbW73B5ajYaxgep18hB7KQWCRvuxp5P
+ODeEMmFDlf7OhCoQDSwJlButNukLTODdHsR7dkaGWt1k+NjbyjpyHbGJ0BU92h43
+evGzd2/EPK8TC0sgHZIjiiZrn7Sl8zspqMUyEiWKurdbinXYOzEmvnvFPvKqFQ9R
+cwIDAQAB
+-----END PUBLIC KEY-----
