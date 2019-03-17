@@ -1,11 +1,14 @@
 package com.ngfs.config;
 
+import java.util.Collections;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +21,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.OAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpointAuthenticationFilter;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -56,7 +61,8 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 	
 	@Bean
 	public TokenStore tokenStore() {
-		return new JwtTokenStore(jwtAccessTokenConverter());
+	//	return new JwtTokenStore(jwtAccessTokenConverter());
+		return new JdbcTokenStore(dataSource);
 	}
 
 	@Bean
@@ -68,7 +74,8 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.jdbc(dataSource).passwordEncoder(passwordEncoder);
+	//	clients.jdbc(dataSource).passwordEncoder(passwordEncoder);
+		clients.jdbc(dataSource);
 	}
 
 	@Bean
@@ -81,11 +88,29 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 		oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
 	}
 	
-	@Override
-	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-		endpoints.tokenStore(tokenStore()).tokenEnhancer(jwtAccessTokenConverter())
-				.authenticationManager(authenticationManager).userDetailsService(userDetailsService);
-	}
 
+	  @Override
+	    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+	        TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
+	        enhancerChain.setTokenEnhancers(Collections.singletonList(jwtAccessTokenConverter()));
+	        endpoints.tokenStore(tokenStore())
+	                .accessTokenConverter(jwtAccessTokenConverter())
+	                .tokenEnhancer(enhancerChain)
+	                .reuseRefreshTokens(false)
+	                .authenticationManager(authenticationManager).userDetailsService(userDetailsService);
+	    }
+
+	 
+	 @Bean
+	 @Primary
+	 public DefaultTokenServices tokenServices() {
+	 	final DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+	 	defaultTokenServices.setTokenStore(tokenStore());
+	 	defaultTokenServices.setSupportRefreshToken(true);
+	 	defaultTokenServices.setAuthenticationManager(authenticationManager);
+	         return defaultTokenServices;
+	 }
+	 
+	
 
 }

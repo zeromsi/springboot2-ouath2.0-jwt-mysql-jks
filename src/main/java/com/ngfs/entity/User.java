@@ -35,11 +35,11 @@ public class User extends BaseIdEntity implements UserDetails {
 	@Column(name = "credentials_expired")
 	private boolean credentialsNonExpired;
 
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name = "role_user", joinColumns = {
-//			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
-//					@JoinColumn(name = "role_id", referencedColumnName = "id") })
-//	private List<Role> roles;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "role_user", joinColumns = {
+			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "role_id", referencedColumnName = "id") })
+	private List<Role> roles;
 
 	@Override
 	public boolean isEnabled() {
@@ -68,12 +68,12 @@ public class User extends BaseIdEntity implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 
-//		roles.forEach(r -> {
-//			authorities.add(new SimpleGrantedAuthority(r.getName()));
-//			r.getPermissions().forEach(p -> {
-//				authorities.add(new SimpleGrantedAuthority(p.getName()));
-//			});
-//		});
+		roles.forEach(r -> {
+			authorities.add(new SimpleGrantedAuthority(r.getName()));
+			r.getPermissions().forEach(p -> {
+				authorities.add(new SimpleGrantedAuthority(p.getName()));
+			});
+		});
 
 		return authorities;
 	}

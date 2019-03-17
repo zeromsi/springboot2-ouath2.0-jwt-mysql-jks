@@ -1,0 +1,16 @@
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/entity/repository/UserRepository.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/entity/package-info.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/entity/BaseIdEntity.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/package-info.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/config/WebSecurityConfiguration.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/config/CustomTokenEnhancer.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/entity/service/package-info.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/config/CustomOauth2RequestFactory.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/entity/repository/package-info.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/config/OAuth2Configuration.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/config/package-info.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/Application.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/entity/Role.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/entity/Permission.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/entity/service/CustomUserDetailsService.java
+/home/zeromsi/Documents/workspace-sts-3.9.5.RELEASE/spring-security/spring-boot-2-ouath2.0-jwt-mysql-jks/src/main/java/com/ngfs/entity/User.java
